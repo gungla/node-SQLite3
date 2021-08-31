@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const handlebars = require("express-handlebars");
 const http = require("http").Server(app);
-const productos = require("./api/productos");
-const mensajes = require("./api/mensajes");
+const productos = require("./controllers/productos");
+const mensajes = require("./controllers/mensajes");
 
 // le pasamos la constante http a socket.io
 const io = require("socket.io")(http);
@@ -35,10 +35,10 @@ io.on("connection", async socket => {
     io.sockets.emit("showMessages", await mensajes.listar());
   });
 
-//   /* Escucho los mensajes enviado por el cliente y se los propago a todos */
+///* Escucho los mensajes enviado por el cliente y se los propago a todos */
 socket.on("update", data => {
-io.sockets.emit("productos", productos.listar());
-});
+    io.sockets.emit("productos", productos.listar());
+  });
 });
 
 // protejo el servidor ante cualquier excepcion no atrapada
@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 });
 
 // importo las rutas y las uso con el prefijo /api
-const router = require("./routes");
+const router = require("./routes/routes");
 app.use("/api", router);
 
 // obtengo el puerto del environment o lo seteo por defecto

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // CONTROLLER
-const Productos = require("./api/productos");
+const Productos = require("../controllers/productos");
 
 // RUTAS
 router.get("/productos/vista", async (req, res) => {

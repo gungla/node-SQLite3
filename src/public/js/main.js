@@ -93,7 +93,7 @@ function data2TableHBS(productos) {
                       </button>
                     </td>
                     <td>
-                      <button class="btn btn-info mt-3" onclick="location.href = '/api/productos/actualizar/{{this.id}}'">
+                      <button class="btn btn-info mt-3" onclick="location.href = '/api/productos/listar/{{this.id}}'">
                         Editar
                       </button>
                     </td>
